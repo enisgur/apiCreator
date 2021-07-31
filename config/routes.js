@@ -8,11 +8,12 @@ exports.testRoute = {
   },
 };
 
-exports.Auth = {
+exports.routesAuth = {
   allAuth: {
     main: "/api/v1/auth", // URL
     mainPath: "./Routes/api/v1/Auth", // Where the files are located
-    routePostRegister: "/register", // POST register new user
-    routePostLogin: "/login", // POST Login user
+    routePostRegister: "/register", // POST Puvlic register new user
+    routePostLogin: "/login", // POST Public Login user
+    routeGetUser: "/", //Get Private User
   },
 };

@@ -10,33 +10,32 @@ const Users = require("../../../../../Models/User");
 const { routesAuth } = require("../../../../../config/routes");
 const { authErrors } = require("../../../../../config/errorCodes");
 
-// @route   POST api/v1/auth/register
-// @desc    Register User
+// @route   POST api/v1/auth/login
+// @desc    Authenticate user & get token LOGIN
 // @access  Public
 async function postLogin(router) {
-  return router.post(routesAuth.allAuth.routePostRegister, async (req, res) => {
-    const { username, password, email, name } = req.body;
+  return router.post(routesAuth.allAuth.routePostLogin, async (req, res) => {
+    const { loginMainCatch, loginUsername, loginPassword, loginDeleted } =
+      authErrors;
+    const { username, password } = req.body;
+
     try {
       // See if user exists
       let user = await Users.findOne({ username });
 
-      if (user) {
-        return serverError(res, authErrors.registerUserExist, null);
+      if (!user) {
+        return serverError(res, loginUsername);
       }
 
-      user = new Users({
-        username,
-        password,
-        email,
-        name,
-      });
+      if (user.isDeleted) {
+        return serverError(res, loginDeleted);
+      }
 
-      // Encrypt password
-      const salt = await bcrypt.genSalt(10);
+      const isMatch = await bcrypt.compare(password, user.password);
 
-      user.password = await bcrypt.hash(password, salt);
-
-      await user.save();
+      if (!isMatch) {
+        return serverError(res, loginPassword);
+      }
 
       // Return jsonwebtoken
       const payload = {
@@ -51,12 +50,12 @@ async function postLogin(router) {
         { expiresIn: config.get("secretExp") },
         (err, token) => {
           if (err) throw err;
-          // return res.json({ token });
+          //   return res.json({ token });
           return success(res, { token });
         }
       );
     } catch (err) {
-      return serverError(res, authErrors.registerMainCatch, err.message);
+      return serverError(res, loginMainCatch);
     }
   });
 }
