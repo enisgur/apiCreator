@@ -1,8 +1,9 @@
 # Api Creator Server
 
-Server side of rest api creator. User can create their own rest API.
+Rest API creator. User can create their rest API. It is similar to fake JSON API creator apps, and we will also add access to the database so users additionally can create a post, put, delete requests. More details will be here
 
-// App is still on development ...
+// App is still on development...
+
 [//// %10 ----------------------------------]
 
 ## Features
