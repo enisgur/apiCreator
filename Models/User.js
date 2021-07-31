@@ -25,9 +25,15 @@ const UsersSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  apis: {
-    type: Array,
-    default: [],
+  apis: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "apis",
+    },
+  ],
+  created: {
+    type: Date,
+    default: Date.now,
   },
 });
 

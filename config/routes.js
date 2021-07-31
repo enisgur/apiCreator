@@ -17,3 +17,10 @@ exports.routesAuth = {
     routeGetUser: "/", //Get Private User
   },
 };
+
+// private routes to create update delete routes (user must be logged in)
+exports.routeUserApi = {
+  main: "/api/v1/userapi",
+  mainPath: "./Routes/api/v1/UserApi",
+  routePostCreateRoute: "/createroute", // POST Private route to create new route
+};

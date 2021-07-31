@@ -31,3 +31,15 @@ exports.authErrors = {
     code: "11833888857",
   },
 };
+
+exports.userApiErrors = {
+  // post Create Route
+  routeMainCatch: {
+    msg: "Route create failed !",
+    code: "8298498129849812830",
+  },
+  routeExist: {
+    msg: "Route is exist",
+    code: "9192049399238",
+  },
+};
