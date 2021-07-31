@@ -1,0 +1,16 @@
+{
+	"_id": "aababab2123",
+	"username": "Jhon",
+	"isDeleted": false,
+	"subscribtion": 1,
+	"apis": [
+		{
+			"name": "subs",
+			"type": "get",
+			"route": "getsubs",
+			"send" : "json",
+			"data": {"msg": "okkkk"}
+		}
+	]
+	
+}
