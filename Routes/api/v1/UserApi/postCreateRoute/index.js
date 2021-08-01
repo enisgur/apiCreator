@@ -13,7 +13,7 @@ const { userApiErrors } = require("../../../../../config/errorCodes");
 
 const auth = require("../../../../../middleware/auth");
 
-// @route   POST api/v1/userapi/createroute
+// @route   POST api/v1/createroute
 // @desc    Post new api
 // @access  Private
 async function postCreateApiRoute(router) {

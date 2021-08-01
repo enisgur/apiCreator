@@ -23,5 +23,6 @@ exports.routeUserApi = {
   main: "/api/v1/",
   mainPath: "./Routes/api/v1/UserApi",
   routePostCreateRoute: "/createroute", // POST Private route to create new route
-  routeGetRoute: "/:user/:route", // GET route from 'route' param
+  routeGetRoute: "/:user/:route", // GET route from 'user' 'route' param
+  routePostRoute: "/:user/:route", // POST route with params 'user' 'route'
 };

@@ -10,7 +10,7 @@ const { userApiErrors } = require("../../../../../config/errorCodes");
 
 const auth = require("../../../../../middleware/auth");
 
-// @route   GET api/v1/userapi/getroute/:route
+// @route   GET api/v1/:user/:route
 // @desc    Get route from param
 // @access  Public
 async function getUserRoute(router) {
