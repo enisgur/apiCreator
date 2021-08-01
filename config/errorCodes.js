@@ -42,4 +42,33 @@ exports.userApiErrors = {
     msg: "Route is exist",
     code: "9192049399238",
   },
+  routeCantSaveApi: {
+    msg: "Couldn't saved the api",
+    code: "9129943099292929",
+  },
+  // get route
+  routeGetMainCatch: {
+    msg: "Route get failed !",
+    code: "1239124129549123",
+  },
+  routeParamRouteNotFound: {
+    msg: "Param not found",
+    code: "12381298312",
+  },
+  routeParamUserNotFound: {
+    msg: "Param not found",
+    code: "123812398312",
+  },
+  routeRouteNotFound: {
+    msg: "There is no route",
+    code: "91298040912549",
+  },
+  routeUsernameNotMatch: {
+    msg: "User not match",
+    code: "192381283803422",
+  },
+  routeLimitReached: {
+    msg: "Request Limit Reached",
+    code: "198128398198000",
+  },
 };

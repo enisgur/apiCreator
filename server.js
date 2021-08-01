@@ -7,7 +7,7 @@ const fs = require("fs");
 const config = require("config");
 
 //  my imports
-const { testRoute, routesAuth } = require("./config/routes");
+const { testRoute, routesAuth, routeUserApi } = require("./config/routes");
 const connectDB = require("./config/db");
 
 // Conntect to Database
@@ -24,6 +24,7 @@ app.use(cors());
 
 app.use(testRoute.testing.main, require(testRoute.testing.mainPath));
 app.use(routesAuth.allAuth.main, require(routesAuth.allAuth.mainPath));
+app.use(routeUserApi.main, require(routeUserApi.mainPath));
 
 // ssl certificates
 // const getCertificates = require("./components/functions/sslCredentials");

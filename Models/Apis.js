@@ -9,6 +9,12 @@ const ApisSchema = new mongoose.Schema({
     username: {
       type: String,
     },
+    email: {
+      type: String,
+    },
+    name: {
+      type: String,
+    },
   },
   name: {
     type: String,
