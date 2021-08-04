@@ -1,3 +1,4 @@
+const moment = require("moment");
 const mongoose = require("mongoose");
 
 const ApisSchema = new mongoose.Schema({
@@ -37,9 +38,23 @@ const ApisSchema = new mongoose.Schema({
     type: Object,
     required: true,
   },
+  history: [{ type: Object, default: {} }],
+  requestDate: {
+    type: Date,
+    default: Date.now,
+    // default: moment().format("YYYY-MM-DD"),
+  },
   requested: {
     type: Number,
     default: 1,
+  },
+  overRequested: {
+    type: Number,
+    default: 0,
+  },
+  totalOverRequested: {
+    type: Number,
+    default: 0,
   },
   totalRequested: {
     type: Number,

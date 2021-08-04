@@ -8,6 +8,7 @@ const Apis = require("../../../../../Models/Apis");
 const { routeUserApi } = require("../../../../../config/routes");
 const { userApiErrors } = require("../../../../../config/errorCodes");
 
+const checkRequiestLimit = require("../../Components/checkRequestLimit");
 const auth = require("../../../../../middleware/auth");
 
 // @route   GET api/v1/:user/:route
@@ -23,6 +24,8 @@ async function getUserRoute(router) {
       routeRouteNotFound,
       routeUsernameNotMatch,
       routeLimitReached,
+      routeUserDeleted,
+      routeUserNotExist,
     } = userApiErrors;
 
     //     get param route
@@ -33,6 +36,11 @@ async function getUserRoute(router) {
 
     try {
       let route = await Apis.findOne({ route: paramRoute });
+      const user = await Users.findOne({ _id: route.user });
+      // check if user find
+      if (!user) return serverError(res, routeUserNotExist);
+      // check if user isDeleted or banned??
+      if (user.isDeleted) return serverError(res, routeUserDeleted);
       //       check if route find?
       if (!route) return serverError(res, routeRouteNotFound);
       //       check if username is same as param
@@ -42,24 +50,11 @@ async function getUserRoute(router) {
       // TODO _______________________________________________________________
       //  Check requested limit if limit reached send serverError
       //       ______________________________________________________________
-      const userLimits = config.get("userLimits");
-      //       normal user
-      if (route.requested >= userLimits.normal)
-        return serverError(res, routeLimitReached);
-      //       premiumUser
-      //       userLimits.premium
+      const limitChecked = await checkRequiestLimit(route, user);
+      if (!limitChecked) return serverError(res, routeLimitReached);
 
-      // update requested
-      route.requested += 1;
-
-      //       update totalRequested
-      route.totalRequested += 1;
-
-      //       save all update on route
-      await route.save();
-
-      return success(res, route.data);
-      //       return success(res, route);
+      // return success(res, route.data);
+      return success(res, route);
     } catch (err) {
       return serverError(res, routeGetMainCatch, err.message);
     }

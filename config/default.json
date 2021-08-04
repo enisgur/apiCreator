@@ -2,5 +2,5 @@
   "mongoURL": "mongodb://enis:42651300@127.0.0.1:27017/apicreator?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false",
   "secretJwt": "-jWTssss33cr,etSecretorayitom44444matik19k!$",
   "secretExp": 3600,
-  "userLimits": { "normal": 10, "premium": 20 }
+  "userLimits": { "normal": 10, "premium": 50 }
 }

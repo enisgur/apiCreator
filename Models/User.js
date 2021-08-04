@@ -17,7 +17,7 @@ const UsersSchema = new mongoose.Schema({
     type: String,
   },
   subscription: {
-    type: Number,
+    type: Number, // 1- Normal    2-Premium
     required: true,
     default: 1,
   },

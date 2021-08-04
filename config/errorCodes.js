@@ -71,4 +71,13 @@ exports.userApiErrors = {
     msg: "Request Limit Reached",
     code: "198128398198000",
   },
+  // user
+  routeUserNotExist: {
+    msg: "User Couldn't find",
+    code: "123123123123444",
+  },
+  routeUserDeleted: {
+    msg: "User Couln't find",
+    code: "1231551231231",
+  },
 };
